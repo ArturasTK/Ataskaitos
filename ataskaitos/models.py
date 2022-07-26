@@ -1,4 +1,5 @@
 from audioop import ratecv
+from tabnanny import verbose
 from django.db import models
 from datetime import date
 
@@ -36,6 +37,10 @@ class Report(models.Model):
     notes = models.TextField('Pastabos', max_length=1000, help_text='Papildomi dabai')
     def __str__(self):
         return f'{self.date_field} {self.dtk_nr}'
+
+        # class Meta:
+        #     verbose_name = 'Žanras'
+        #     verbose_name_plural = 'Žanrai'
 
 
 
