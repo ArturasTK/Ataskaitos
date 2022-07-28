@@ -2,7 +2,7 @@ from audioop import ratecv
 from tabnanny import verbose
 from django.db import models
 from datetime import date
-
+from django.contrib.auth.models import User
 
 class Product(models.Model):
     product_name = models.CharField('Produktas', max_length=50)
@@ -35,6 +35,8 @@ class Report(models.Model):
     number_of_new_plates = models.IntegerField('Keičiamų klišių sk.') 
     reasons = models.ForeignKey(Reason, help_text='Pasirinkite korekcijos tipą', on_delete=models.SET_NULL, null=True)
     notes = models.TextField('Pastabos', max_length=1000, help_text='Papildomi dabai')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    
     def __str__(self):
         return f'{self.date_field} {self.dtk_nr}'
 
