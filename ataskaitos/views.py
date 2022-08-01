@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from .models import Product, Report, Remake, Reason
 
 def index(request):
-    
+
     num_reports = Report.objects.all().count()
     context = {
         'num_reports': num_reports,
@@ -14,7 +14,7 @@ def index(request):
 
 def report(request):
     
-    report = Report.objects.all()
+    report = Report.objects.filter(user=request.user).order_by('-date_field')
     context = {
         'report': report
     }
