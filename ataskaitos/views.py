@@ -20,10 +20,11 @@ def report(request):
     page_number = request.GET.get('page')
     paged_reports = paginator.get_page(page_number)
     context = {
-       
+        
         'report': paged_reports
     }
-        return render(request, 'report.html', context=context)
+    
+    return render(request, 'report.html', context=context)
 
 
 
