@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # from matplotlib.style import context
 from .models import Product, Report, Remake, Reason
+# from django.views import generic
+from django.core.paginator import Paginator
 
 def index(request):
 
@@ -14,10 +16,15 @@ def index(request):
 
 def report(request):
     
-    report = Report.objects.filter(user=request.user).order_by('-date_field')
+    paginator = Paginator(Report.objects.filter(user=request.user).order_by('-date_field'), 2)
+    page_number = request.GET.get('page')
+    paged_reports = paginator.get_page(page_number)
     context = {
-        'report': report
+       
+        'report': paged_reports
     }
-    print(report)
-    return render(request, 'report.html', context=context)
-    # return HttpResponse("Hello World!")
+        return render(request, 'report.html', context=context)
+
+
+
+
