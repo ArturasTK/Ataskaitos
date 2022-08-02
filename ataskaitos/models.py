@@ -30,11 +30,11 @@ class Report(models.Model):
     date_field = models.DateField('Data', default=date.today)
     dtk_nr = models.CharField('DTK Nr.', max_length=10)
     product_name = models.ForeignKey(Product, help_text='Pasirinkite produktą', on_delete=models.SET_NULL, null=True)
-    remakes = models.ForeignKey(Remake, help_text='Pasirinkite perdarimo priežastis', on_delete=models.SET_NULL, null=True)
-    number_of_plates = models.IntegerField('Klišių sk.')
-    number_of_new_plates = models.IntegerField('Keičiamų klišių sk.') 
-    reasons = models.ForeignKey(Reason, help_text='Pasirinkite korekcijos tipą', on_delete=models.SET_NULL, null=True)
-    notes = models.TextField('Pastabos', max_length=1000, help_text='Papildomi dabai')
+    remakes = models.ForeignKey(Remake, help_text='Pasirinkite perdarimo priežastis', on_delete=models.SET_NULL, null=True, blank=True)
+    number_of_plates = models.PositiveIntegerField('Klišių sk.')
+    number_of_new_plates = models.PositiveIntegerField('Keičiamų klišių sk.') 
+    reasons = models.ForeignKey(Reason, help_text='Pasirinkite korekcijos tipą', on_delete=models.SET_NULL, null=True, blank=True)
+    notes = models.TextField('Pastabos', max_length=1000, help_text='Papildomi dabai', blank=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
