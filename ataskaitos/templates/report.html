@@ -1,11 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Darbai</h1>
+<div class="container text-center">
+    <h1>Darbai</h1>
   <p>atliktų darbų sąrašas.</p>
-  {% for a in report %}
-    <ul>{{a.date_field}} | {{a.dtk_nr}} | {{a.product_name}} | {{a.remakes}} | {{a.number_of_plates}} | {{a.number_of_new_plates}} | {{a.reason}} | {{a.notes}}</ul>
-    {% endfor %}
+</div>
+  
+    <div class="container">
+        <table class="table text-center table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>DTK</th>
+                <th>Produktas</th>
+                <th>Perdarymai</th>
+                <th>Klišių sk.</th>
+                <th>Keičiamų klišių sk.</th>
+                <th>Priežastis</th>
+                <th>Papildomi darbai</th>
+            </tr>
+        </thead>
+        {% for a in report %}    
+        <tbody>
+            <tr>
+                <td>{{a.date_field}}</td>
+                <td>{{a.dtk_nr}}</td>
+                <td>{{a.product_name}}</td>
+                <td>{{a.remakes}}</td>
+                <td>{{a.number_of_plates}}</td>
+                <td>{{a.number_of_new_plates}}</td>
+                <td>{{a.reason}}</td>
+                <td>{{a.notes}}</td> 
+            </tr>          
+        </tbody>
+        {% endfor %}
+        </table>
+    </div>
+    
     <div class="container puslapiai">
         <nav aria-label="...">
             {% if report.has_other_pages %}
