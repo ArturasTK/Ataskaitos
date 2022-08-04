@@ -19,7 +19,7 @@ def index(request):
 
 def report(request):
     
-    paginator = Paginator(Report.objects.filter(user=request.user).order_by('-date_field'), 2)
+    paginator = Paginator(Report.objects.filter(user=request.user).order_by('-date_field'), 10)
     page_number = request.GET.get('page')
     paged_reports = paginator.get_page(page_number)
     context = {
