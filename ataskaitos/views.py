@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from .models import Product, Report, Remake, Reason
 # from django.views import generic
 from django.core.paginator import Paginator
+from .forms import ReportForm
+
 
 def index(request):
 
@@ -18,13 +20,14 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 def report(request):
-    
+
+    form = ReportForm    
     paginator = Paginator(Report.objects.filter(user=request.user).order_by('-date_field'), 10)
     page_number = request.GET.get('page')
     paged_reports = paginator.get_page(page_number)
     context = {
-        
-        'report': paged_reports
+        'report': paged_reports,
+        'form': form, 
     }
     
     return render(request, 'report.html', context=context)
