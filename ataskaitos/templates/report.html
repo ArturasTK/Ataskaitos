@@ -2,22 +2,20 @@
 
 {% block content %}
 
-<div>
-    <h1>Atliktų darbų įvedimo forma</h1>
-    <br/><br/>
-    <form action="" method=POST>
-        {% csrf_token %}
-
-        {{ form.as_p }}
-        <input type = "submit" value = "Submit" class = "btn btn-secondary">
-
-    </form>
-</div>
-<div class="container text-center">
-    <h1>Darbai</h1>
-  <p>atliktų darbų sąrašas.</p>
-</div>
-  
+<div class="container">
+    <div>
+        <h3>Atliktų darbų įvedimo forma</h3>
+        <form class="form-inline" action="" method=POST>
+            {% csrf_token %}
+    
+            {{ form.as_p }}
+            <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">
+        </form>
+    </div>
+    <div class="text-center">
+        <h1>Darbai</h1>
+      <p>atliktų darbų sąrašas.</p>
+    </div>
     <div>
         <table class="table text-center table-striped table-bordered table-hover shadow">
         <thead>
@@ -49,7 +47,7 @@
         </table>
     </div>
     
-    <div class="container puslapiai">
+    <div class="puslapiai">
         <nav aria-label="...">
             {% if report.has_other_pages %}
                 <ul class="pagination pagination-sm justify-content-end">
@@ -67,5 +65,6 @@
                 </ul>
             {% endif %}
         </nav>
-    </div>   
+    </div>
+</div>   
 {% endblock %}
