@@ -21,8 +21,8 @@ class ReportForm(ModelForm):
         #     'user':
         # }
         widgets = {
-            'date_field': forms.DateInput(attrs={'class':'form-control','id':'inlineFormInputDate'}),
-            'dtk_nr': forms.TextInput(attrs={'class':'form-control','id':'inlineFormTextDate'}),
+            'date_field': forms.DateInput(attrs={'class':'form-control'}),
+            'dtk_nr': forms.TextInput(attrs={'class':'form-control'}),
             'product_name': forms.Select(attrs={'class':'form-control'}),
             'remakes': forms.Select(attrs={'class':'form-control'}),
             'number_of_plates': forms.NumberInput (attrs={'class':'form-control'}),
