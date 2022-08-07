@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-    <div>
+    <div class="text-center shadow">
         <h3>Atliktų darbų įvedimo forma</h3>
         <form class="form-inline" action="" method=POST>
             {% csrf_token %}
@@ -12,6 +12,7 @@
             <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">
         </form>
     </div>
+    <br/>
     <div class="text-center">
         <h1>Darbai</h1>
       <p>atliktų darbų sąrašas.</p>
