@@ -1,22 +1,32 @@
-from calendar import month
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Product, Report, Remake, Reason
 from django.core.paginator import Paginator
 from .forms import ReportForm
+from datetime import datetime
 
 # def count(request):
 #     month_value = Report.
 
+def base(request):
+
+    num_reports_of_day = Report.objects.filter(date_field__contains=datetime.today().date()).count()
+    context = {
+        'num_reports_of_day': num_reports_of_day,
+    }
+
+    return render(request, 'base.html', context=context)
 
 def index(request):
 
     num_reports = Report.objects.all().count()
+    num_reports_of_day = Report.objects.filter(date_field__contains=datetime.today().date()).count()
     num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
     context = {
         'num_reports': num_reports,
-        'num_visits': num_visits,
+        'num_visits': num_visits, 
+        'num_reports_of_day': num_reports_of_day,       
     }
 
     return render(request, 'index.html', context=context)

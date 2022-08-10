@@ -28,7 +28,7 @@ class Report(models.Model):
     date_field = models.DateTimeField('Data', default=datetime.now)
     dtk_nr = models.CharField('DTK Nr.', max_length=10)
     product_name = models.ForeignKey(Product, help_text='Pasirinkite produktą', on_delete=models.SET_NULL, null=True)
-    remakes = models.ForeignKey(Remake, help_text='Pasirinkite perdarimo priežastis', on_delete=models.SET_NULL, null=True, blank=True)
+    remakes = models.ForeignKey(Remake, help_text='Pasirinkite perdarimo priežastis', on_delete=models.CASCADE, blank=True)
     number_of_plates = models.PositiveIntegerField('Klišių sk.')
     number_of_new_plates = models.PositiveIntegerField('Keičiamų klišių sk.') 
     reasons = models.ForeignKey(Reason, help_text='Pasirinkite korekcijos tipą', on_delete=models.SET_NULL, null=True, blank=True)
