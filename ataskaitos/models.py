@@ -1,7 +1,5 @@
-from audioop import ratecv
-from tabnanny import verbose
 from django.db import models
-from datetime import date
+from datetime import datetime
 from django.contrib.auth.models import User
 
 class Product(models.Model):
@@ -27,7 +25,7 @@ class Reason(models.Model):
 
 
 class Report(models.Model):
-    date_field = models.DateField('Data', default=date.today)
+    date_field = models.DateTimeField('Data', default=datetime.now)
     dtk_nr = models.CharField('DTK Nr.', max_length=10)
     product_name = models.ForeignKey(Product, help_text='Pasirinkite produktą', on_delete=models.SET_NULL, null=True)
     remakes = models.ForeignKey(Remake, help_text='Pasirinkite perdarimo priežastis', on_delete=models.SET_NULL, null=True, blank=True)
@@ -35,14 +33,12 @@ class Report(models.Model):
     number_of_new_plates = models.PositiveIntegerField('Keičiamų klišių sk.') 
     reasons = models.ForeignKey(Reason, help_text='Pasirinkite korekcijos tipą', on_delete=models.SET_NULL, null=True, blank=True)
     notes = models.TextField('Pastabos', max_length=1000, help_text='Papildomi dabai', blank=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     
     def __str__(self):
         return f'{self.date_field} {self.dtk_nr}'
 
-        # class Meta:
-        #     verbose_name = 'Žanras'
-        #     verbose_name_plural = 'Žanrai'
+       
 
 
 

@@ -7,9 +7,22 @@
         <h3>Atliktų darbų įvedimo forma</h3>
         <form class="form-inline" action="" method=POST>
             {% csrf_token %}
-    
-            {{ form.as_p }}
-            <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">
+            <table class="table"></table>
+            <thead>
+                <tr>
+                <th>{{ form.date_field }}</th>
+                <th>{{ form.dtk_nr }}</th>
+                <th>{{ form.product_name }}</th>
+                <th>{{ form.remakes }}</th>
+                <th>{{ form.number_of_plates }}</th>
+                <th>{{ form.number_of_new_plates }}</th>
+                <th>{{ form.reasons }}</th>
+                <th>{{ form.notes }}</th>
+                <th>{{ form.user }}</th>
+                </tr>
+                <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">
+            </thead>
+            </table>
         </form>
     </div>
     <br/>
