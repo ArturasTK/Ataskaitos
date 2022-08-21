@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Master</title>{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="text-center shadow">
+    <h3>Naujo produkto įvedimo forma</h3>
+    <form  class="form-inline" action="" method=POST>
+        {% csrf_token %}
+        <div class="form-row">                    
+            <div class="col">{{ form.product_name }}</div>
+            <div class="col">{{ form.price }}</div>
+            <div class="col">{{ form.purpose }}</div>
+            <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">           
+        </div>
+    </form>
+    </div>
+</div>
+{% endblock %}
