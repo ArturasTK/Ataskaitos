@@ -8,4 +8,5 @@ urlpatterns = [
     # path('', views.base, name='base'),
     # path('report/', views.base, name='base'),
     path('register/', views.register, name='register'),
+    path('master/', views.master, name='master' ),
 ]
