@@ -3,18 +3,116 @@
 {% block title %}<title>Master</title>{% endblock %}
 
 {% block content %}
+<br>
 <div class="container">
-    <div class="text-center shadow">
+    <div class="col-md-6">
+     
     <h3>Naujo produkto įvedimo forma</h3>
-    <form  class="form-inline" action="" method=POST>
+    <hr> 
+    <form action="" method=POST>
         {% csrf_token %}
-        <div class="form-row">                    
-            <div class="col">{{ form.product_name }}</div>
-            <div class="col">{{ form.price }}</div>
-            <div class="col">{{ form.purpose }}</div>
-            <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">           
-        </div>
+        {{form}}
+        <input type = "submit" value = "Išsaugoti" >
     </form>
     </div>
+
+     
+
+    <div class="text-center">
+        <h3>Produktai</h3>
+    </div>
+    
+    <div>
+        <table class="table text-center table-striped table-bordered table-hover shadow">
+        <thead>
+            <tr>
+                <th>Produktas</th>
+                <th>Kaina</th>
+                <th>Paskirtis</th>                
+            </tr>
+        </thead>
+        {% for i in master %}    
+        <tbody>
+            <tr>
+                <td>{{i.product_name}}</td>
+                <td>{{i.price}}</td>
+                <td>{{i.purpose}}</td>                 
+            </tr>          
+        </tbody>
+        {% endfor %}
+        </table>
+    </div>
+    
+    <div class="col-md-3">
+        <h3>Naujos priežasties įvedimo forma</h3>
+        <hr>
+        <form  class="form-inline" action="" method=POST>
+            {% csrf_token %}
+            <div class="form-row">                    
+                <div class="col">{{ form.reasons }}</div>
+                <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">           
+            </div>
+        </form>
+    </div>
+
+
+<br>
+<div class="text-center">
+    <h1>Darbai</h1>
+  <p>atliktų darbų sąrašas.</p>
+</div>
+<br>
+<div>
+    <table class="table text-center table-striped table-bordered table-hover shadow">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>DTK</th>
+                <th>Produktas</th>
+                <th>Perdarymai</th>
+                <th>Klišių sk.</th>
+                <th>Keičiamų klišių sk.</th>
+                <th>Priežastis</th>
+                <th>Papildomi darbai</th>
+                <th>paruošėjas</th>
+            </tr>
+        </thead>
+        {% for a in report %}    
+        <tbody>
+            <tr>
+                <td>{{a.date_field}}</td>
+                <td>{{a.dtk_nr}}</td>
+                <td>{{a.product_name}}</td>
+                <td>{{a.remakes}}</td>
+                <td>{{a.number_of_plates}}</td>
+                <td>{{a.number_of_new_plates}}</td>
+                <td>{{a.reason}}</td>
+                <td>{{a.notes}}</td>
+                <td>{{a.user}}</td>
+            </tr>          
+        </tbody>
+        {% endfor %}
+        </table>
+</div>
+
+<div class="puslapiai">
+    <nav aria-label="...">
+        {% if report.has_other_pages %}
+            <ul class="pagination pagination-sm justify-content-end">
+                {% for i in report.paginator.page_range %}
+                    {% if report.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link" href">{{ i }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </nav>
+</div>
 </div>
 {% endblock %}

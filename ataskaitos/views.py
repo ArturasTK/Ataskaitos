@@ -69,33 +69,35 @@ def report(request):
 
 
 # @login_required
-# def master(request):
-#     if request.method == "POST":
-#         form = ProductForm(request.POST)
-#         if form.is_valid():
-#             form = form.save(commit=False)
-#             form.save()          
-#             return HttpResponseRedirect('/ataskaitos/master/')
-#     else:
-#         form = ProductForm() 
-#     context = {
-#         'form': form,
-
-#     }
-
-#     return render(request, 'master.html',context=context)
-
 def master(request):
 
-    form=ProductForm
+    form=ProductForm()
     
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
 
-    context={'form':form}
-    return render(request, 'master.html', context)
+    master = Product.objects.all()
+    # price = Product.objects.all()
+    # purpose = Product.objects.all()
+    # remakes = Remake.objects.all()
+    # reasons = Reason.objects.all()
+    paginator = Paginator(Report.objects.order_by('-date_field'), 20)
+    page_number = request.GET.get('page')
+    paged_reports = paginator.get_page(page_number)
+
+    context={
+        'form':form,
+        'master':master,
+        'report':paged_reports,
+        # 'price':price,
+        # 'purpose':purpose,
+        # 'remakes':remakes,
+        # 'reasons':reasons,
+        }
+       
+    return render(request, 'master.html', context=context)
 
 
 @csrf_protect
