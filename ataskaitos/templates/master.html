@@ -14,46 +14,79 @@
         {{form}}
         <input type = "submit" value = "Išsaugoti" >
     </form>
+    </div>     
+    <br>
+    <div class="row">    
+        <div>
+            <div class="col-md-6 text-center">
+                <h3>Produktas</h3>                       
+                <table class="table text-center table-striped table-bordered table-hover shadow">
+                    <thead>
+                        <tr>
+                            <th>Produktas</th>
+                            <th>Kaina</th>
+                            <th>Paskirtis</th>                
+                        </tr>
+                    </thead>
+                {% for i in master %}    
+                    <tbody>
+                        <tr>
+                            <td>{{i.product_name}}</td>
+                            <td>{{i.price}}</td>
+                            <td>{{i.purpose}}</td>                 
+                        </tr>          
+                    </tbody>
+                {% endfor %}
+                </table>
+            </div> 
+        </div>            
+        <div class="col-md-3 text-center">
+            <h3>Perdarymai</h3>    
+            <table class="table text-center table-striped table-bordered table-hover shadow">
+            <thead>
+                <tr>
+                    <th>Perdarymai</th>                              
+                </tr>
+            </thead>
+            {% for i in remake %}    
+            <tbody>
+                <tr>
+                    <td>{{i.remakes}}</td>                 
+                </tr>          
+            </tbody>
+            {% endfor %}
+            </table>
+        </div>            
+        <div class="col-md-3 text-center">
+            <h3>Priežastys</h3>    
+            <table class=" table text-center table-striped table-bordered table-hover shadow">
+            <thead>
+                <tr>
+                    <th>Priežastis</th>                              
+                </tr>
+            </thead>
+            {% for i in reason %}    
+            <tbody>
+                <tr>
+                    <td>{{i.reasons}}</td>                 
+                </tr>          
+            </tbody>
+            {% endfor %}
+            </table>
+        </div>
     </div>
-
-     
-
-    <div class="text-center">
-        <h3>Produktai</h3>
-    </div>
-    
-    <div>
-        <table class="table text-center table-striped table-bordered table-hover shadow">
-        <thead>
-            <tr>
-                <th>Produktas</th>
-                <th>Kaina</th>
-                <th>Paskirtis</th>                
-            </tr>
-        </thead>
-        {% for i in master %}    
-        <tbody>
-            <tr>
-                <td>{{i.product_name}}</td>
-                <td>{{i.price}}</td>
-                <td>{{i.purpose}}</td>                 
-            </tr>          
-        </tbody>
-        {% endfor %}
-        </table>
-    </div>
-    
-    <div class="col-md-3">
-        <h3>Naujos priežasties įvedimo forma</h3>
-        <hr>
-        <form  class="form-inline" action="" method=POST>
-            {% csrf_token %}
-            <div class="form-row">                    
-                <div class="col">{{ form.reasons }}</div>
-                <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">           
-            </div>
-        </form>
-    </div>
+        
+        <div class="col-md-3">
+            <h3>Naujos priežasties įvedimo forma</h3>
+            <hr>
+            <form  class="form-inline" action="" method=POST>
+                {% csrf_token %}
+                <div class="form-row">                    
+                    <div class="col">{{ form.reasons }}</div>
+                    <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">           
+                </div>
+            </form>
+        </div>
 
 
 <br>

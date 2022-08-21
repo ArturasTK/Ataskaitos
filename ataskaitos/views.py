@@ -1,4 +1,5 @@
 from multiprocessing import context
+from ssl import Purpose
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Product, Report, Remake, Reason
@@ -79,10 +80,8 @@ def master(request):
             form.save()
 
     master = Product.objects.all()
-    # price = Product.objects.all()
-    # purpose = Product.objects.all()
-    # remakes = Remake.objects.all()
-    # reasons = Reason.objects.all()
+    reason = Reason.objects.all()
+    remake = Remake.objects.all()
     paginator = Paginator(Report.objects.order_by('-date_field'), 20)
     page_number = request.GET.get('page')
     paged_reports = paginator.get_page(page_number)
@@ -91,10 +90,8 @@ def master(request):
         'form':form,
         'master':master,
         'report':paged_reports,
-        # 'price':price,
-        # 'purpose':purpose,
-        # 'remakes':remakes,
-        # 'reasons':reasons,
+        'reason':reason,
+        'remake':remake,        
         }
        
     return render(request, 'master.html', context=context)
