@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Product, Report
+from .models import Product, Report, Remake, Reason  
 
 
 class ReportForm(ModelForm):
@@ -40,3 +40,13 @@ class ProductForm(ModelForm):
         #     'price': forms.DecimalField(attrs={'class':'form-control'}),
         #     'purpose': forms.CharField(attrs={'class':'form-control'}),
         # }
+
+class RemakeForm(ModelForm):
+    class Meta:
+        model = Remake
+        fields = '__all__'
+
+class ReasonForm(ModelForm):
+    class Meta:
+        model = Reason
+        fields = '__all__'
