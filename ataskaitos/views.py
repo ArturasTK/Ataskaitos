@@ -71,6 +71,8 @@ def report(request):
 
 # @login_required
 def master(request):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect('/ataskaitos/report/')
 
     form=ProductForm()
     
