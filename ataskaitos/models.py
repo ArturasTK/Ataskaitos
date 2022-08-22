@@ -14,14 +14,14 @@ class Product(models.Model):
 
 
 class Remake(models.Model):
-    remakes = models.CharField('Perdarymai', max_length=50)
+    remakes = models.CharField('Perdarymai', max_length=50, null=True, blank=True)
 
     def __str__(self):
         return str(self.remakes)
 
 
 class Reason(models.Model):
-    reasons = models.CharField('Priežastys', max_length=50)
+    reasons = models.CharField('Priežastys', max_length=50, null=True, blank=True)
 
     def __str__(self):
         return str(self.reasons)
@@ -38,14 +38,12 @@ class Report(models.Model):
     notes = models.TextField('Pastabos', max_length=1000, help_text='Papildomi dabai', blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     
-    def __str__(self):
-        return f'{self.date_field} {self.dtk_nr}'
+    # def __str__(self):
+    #     return f'{self.date_field} {self.dtk_nr}'
 
-    @property
-    def is_overdue(self):
-        if self.due_back and date.today() > self.due_back:
-            return True
-        return False
+    #  rankoves = Report.objects.filter(product_name="2").filter(date_field__contains=datetime.now().month).filter(remakes=0)
+
+   
 
 
 

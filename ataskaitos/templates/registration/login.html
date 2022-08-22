@@ -11,7 +11,7 @@
       <p>Neturite prieigos prie šios informacijos. Turite prisijungti.</p>
     {% endif %}
   {% endif %}
-  
+  <div class="container">
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <table>
@@ -29,5 +29,6 @@
   </form>
   
   <p><a href="{% url 'password_reset' %}">Pamiršote slaptažodį?</a></p>
+</div>
   
 {% endblock %}
