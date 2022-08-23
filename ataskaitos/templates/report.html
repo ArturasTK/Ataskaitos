@@ -6,7 +6,7 @@
         <h3>Atliktų darbų įvedimo forma</h3>
         <form class="form-inline" action="" method=POST>
             {% csrf_token %}
-            <div class="row">            
+            <div class="row mb-4">            
                 <div class="col">{{ form.date_field }}</div>
                 <div class="col">{{ form.dtk_nr }}</div>
                 <div class="col">{{ form.product_name }}</div>
@@ -16,8 +16,8 @@
                 <div class="col">{{ form.reasons }}</div>
                 <div class="col">{{ form.notes }}</div>
                 <div class="col">{{ form.user }}</div>                
-                <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary"><br/>
-                <br/>                
+                <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">
+                               
             </div>
         </form>
 </div>

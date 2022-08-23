@@ -35,18 +35,24 @@ class ProductForm(ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
-        # widgets = {
-        #     'product_name': forms.CharField(attrs={'class':'form-control','placeholder': 'produktas'}),
-        #     'price': forms.DecimalField(attrs={'class':'form-control'}),
-        #     'purpose': forms.CharField(attrs={'class':'form-control'}),
-        # }
+        widgets = {
+            'product_name': forms.TextInput(attrs={'class':'form-control'}),
+            'price': forms.NumberInput(attrs={'class':'form-control'}),
+            'purpose': forms.TextInput(attrs={'class':'form-control'}),
+        }
 
 class RemakeForm(ModelForm):
     class Meta:
         model = Remake
         fields = '__all__'
+        widgets = {
+            'remakes': forms.TextInput(attrs={'class':'form-control'}),            
+        }
 
 class ReasonForm(ModelForm):
     class Meta:
         model = Reason
         fields = '__all__'
+        widgets = {
+            'reasons': forms.TextInput(attrs={'class':'form-control'}),            
+        }

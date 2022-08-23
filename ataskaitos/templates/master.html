@@ -4,17 +4,7 @@
 
 {% block content %}
 <br>
-<div class="container">
-    <div class="col-md-6">
-     
-    <h3>Naujo produkto įvedimo forma</h3>
-    <hr> 
-    <form class="container" action="" method=POST>
-        {% csrf_token %}
-        {{form}}
-        <input type = "submit" value = "Išsaugoti" >
-    </form>
-    </div>     
+<div class="container">  
     <br>
     <div class="row">    
             <div class="col-md-6 text-center">
@@ -54,7 +44,7 @@
             </tbody>
             {% endfor %}
             </table>
-        </div>            
+        </div>                   
         <div class="col-md-3 text-center">
             <h3>Priežastys</h3>    
             <table class=" table text-center table-striped table-bordered table-hover shadow">
@@ -73,20 +63,48 @@
             </table>
         </div>
     </div>
-        
-        <div class="col-md-3">
-            <h3>Naujos priežasties įvedimo forma</h3>
-            <hr>
-            <form  class="form-inline" action="" method=POST>
-                {% csrf_token %}
-                <div class="form-row">                    
-                    <div class="col">{{ form.reasons }}</div>
-                    <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">           
-                </div>
-            </form>
+    <br>
+    <div class="row">
+
+        <div class="col-md-6 text-center">
+            <div class="card card-body">
+                <h3>Naujo produkto įvedimo forma</h3>
+                <hr> 
+                <form  action="" method=POST>
+                    {% csrf_token %}                    
+                    <div>{{form}}</div>                                   
+                    <br>
+                    <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary" > 
+                </form>
+            </div>            
         </div>
 
+        <div class="col-md-3 text-center">
+            <div class="card card-body">
+                <h3>Naujo perdarymo įvedimo forma</h3>
+                <hr>
+                <form  action="" method=POST>
+                    {% csrf_token %}
+                    <div>{{remakes}}</div>
+                    <br>                
+                    <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary"> 
+                </form>             
+            </div>
+        </div>
 
+        <div class="col-md-3 text-center">
+            <div class="card card-body">
+                <h3>Naujos priežasties įvedimo forma</h3>
+                <hr>
+                <form  action="" method=POST>
+                    {% csrf_token %}
+                    <div>{{reasons}}</div>
+                    <br>
+                    <input type = "submit" value = "Išsaugoti" class = "btn btn-secondary">
+                </form>              
+            </div>
+        </div>
+    </div>
 <br>
 <div class="text-center">
     <h1>Darbai</h1>

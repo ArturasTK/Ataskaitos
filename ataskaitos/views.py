@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Product, Report, Remake, Reason
 from django.core.paginator import Paginator
-from .forms import ReportForm, ProductForm
+from .forms import ReportForm, ProductForm, RemakeForm, ReasonForm
 from datetime import datetime
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
@@ -80,6 +80,23 @@ def master(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
+            return HttpResponseRedirect('/ataskaitos/master/')
+
+    reasons=ReasonForm()
+    
+    if request.method == 'POST':
+        reasons = ReasonForm(request.POST)
+        if reasons.is_valid():
+            reasons.save()
+            return HttpResponseRedirect('/ataskaitos/master/')
+
+    remakes=RemakeForm()
+
+    if request.method == 'POST':
+        remakes = RemakeForm(request.POST)
+        if remakes.is_valid():
+            remakes.save()
+            return HttpResponseRedirect('/ataskaitos/master/')
 
     master = Product.objects.all()
     reason = Reason.objects.all()
@@ -93,7 +110,9 @@ def master(request):
         'master':master,
         'report':paged_reports,
         'reason':reason,
-        'remake':remake,        
+        'remake':remake,
+        'reasons':reasons, 
+        'remakes':remakes,       
         }
        
     return render(request, 'master.html', context=context)
